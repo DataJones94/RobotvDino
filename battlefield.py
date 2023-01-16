@@ -4,7 +4,7 @@ from dinosaur import Dinosaur
 class Battlefield:
     def __init__(self):
         self.robot = Robot("R2",50)
-        self.dino = Dinosaur("Kesha",50,100)
+        self.dino = Dinosaur("Kesha",100,50)
         pass
 
     #Master Method
@@ -18,22 +18,15 @@ class Battlefield:
         print("Welcome to the showdown!")
 
     def battle_phase(self):
-        while self.robot.health < 50:
-         if self.dino.attack(self.robot): 
-            print("R2 attacks Kesha!")
-
-         elif self.dino.health < 100:
-            self.robot.attack(self.dino) 
-            print("Kesha attacks R2!")
-            break
-        
-    #  while (self.robot.health > 0 or self.dino.health > 0):
+        # until health for 1 player has fallen to/below 0
+        while self.dino.health > 0 and self.robot.health > 0:
+            # each player attacks the other
+            self.dino.attack(self.robot)
+            self.robot.attack(self.dino)
  
     def display_winner(self):
        if self.robot.health <= 0:
-        print("Game Concluded: The winner is Ke$ha!")
+        print(f"Game Concluded: The winner is {self.dino.name}!")
        else:
-        print("Game Concluded: The winner is R2!")
-
-         
-        pass
+        print(f"Game Concluded: The winner is {self.robot.name}!")
+       pass
